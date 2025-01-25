@@ -1,3 +1,4 @@
+
 const tasks = [
     {
         id : 1,
@@ -14,16 +15,19 @@ const tasks = [
 ]
 
 import express from "express";
+import morgan from "morgan";
+
 const app = express();
 const PORT = 4000;
 
+
 app.get('/',(req , res)=> {
-    // console.log(req)
+    console.log("request By",req.requestBy)
     res.status(200).send(tasks)
 });
 
 app.post('/',(req , res)=> {
-    // console.log(req)
+    console.log("request body",req.body)
     res.send("POST REQUEST")
 });
 
