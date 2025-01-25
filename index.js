@@ -16,30 +16,33 @@ const tasks = [
 
 import express from "express";
 import morgan from "morgan";
-
+import userRoutes from "./routers/users.js"
 const app = express();
 const PORT = 4000;
 
+app.use(express.json())
 
 app.get('/',(req , res)=> {
     console.log("request By",req.requestBy)
     res.status(200).send(tasks)
 });
 
-app.post('/',(req , res)=> {
-    console.log("request body",req.body)
-    res.send("POST REQUEST")
-});
+app.use('/user' , userRoutes)
 
-app.put('/',(req , res)=> {
-    // console.log(req)
-    res.send("PUT REQUEST")
-});
+// app.post('/',(req , res)=> {
+//     console.log("request body",req.body)
+//     res.send("POST REQUEST")
+// });
+
+// app.put('/',(req , res)=> {
+//     // console.log(req)
+//     res.send("PUT REQUEST")
+// });
 
 
-app.delete('/',(req , res)=> {
-    // console.log(req)
-    res.send("DeLETE REQUEST")
-});
+// app.delete('/',(req , res)=> {
+//     // console.log(req)
+//     res.send("DeLETE REQUEST")
+// });
 
 app.listen(PORT , () => console.log("Server is runing on port"+ PORT));
